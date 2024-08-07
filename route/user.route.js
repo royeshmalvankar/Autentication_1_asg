@@ -23,7 +23,7 @@ userRoutes.post("/login",async(req,res )=> {
         const user= await User.findOne({email})
         if(user){
             if(user.password == password){
-                const token = jwt.sign({id:user._id},"masai")
+                const token = jwt.sign({id:user._id},"masai",{expiresIn:"1h"})
                 res.status(200)
                 res.json({"message":"login success",token})
             }else{
